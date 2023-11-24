@@ -26,6 +26,19 @@ current_image = {'url': "https://source.unsplash.com/random/512x512?monster,vfx,
 def index():
     return render_template('index.html', image=current_image)
 
+@app.route('/results')
+def results():
+    # Load existing submissions
+    submissions = load_submissions()
+
+    # Calculate total votes
+    total_yes = submissions['yes']
+    total_no = submissions['no']
+
+    return render_template('results.html', results={'yes': total_yes, 'no': total_no, 'submissions': submissions['submissions']})
+
+
+
 @app.route('/vote', methods=['POST'])
 def vote():
     user_vote = request.form.get('vote')
