@@ -6,11 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gagu or Not Gagu</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        img {
+            max-width: 50%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Monster Voting</h1>
-        <img src="{{ image.url }}" alt="Monster Image">
+        <h1>Is this a gagu?</h1>
+        <img src="{{ image.url }}" alt="Monster Image" >
         <form method="post" action="{{ url_for('vote') }}" class="vote-form">
             <button type="submit" name="vote" value="yes" class="yes-button">Yes</button>
             <button type="submit" name="vote" value="no" class="no-button">No</button>

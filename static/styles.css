@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
+    background-color: #ffd699; /* Pastel orange background */
     margin: 0;
     display: flex;
     justify-content: center;
@@ -8,45 +8,39 @@ body {
     height: 100vh;
 }
 
-h1 {
+.container {
     text-align: center;
+}
+
+h1 {
     color: #333;
 }
 
 img {
-    max-width: 100%;
+    max-width: 50%;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: 0 auto;
 }
 
-form {
-    text-align: center;
+.vote-form {
     margin-top: 20px;
 }
 
-label {
-    margin: 0 10px;
-    font-size: 16px;
-    color: #333;
-}
-
-input[type="radio"] {
-    margin-right: 5px;
-}
-
-input[type="submit"] {
-    background-color: #4caf50;
+.yes-button, .no-button {
+    background-color: #ff8c1a; /* Complimentary color */
     color: white;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 15px 30px; /* Larger padding for larger buttons */
+    font-size: 18px; /* Larger font size */
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-input[type="submit"]:hover {
-    background-color: #45a049;
+.yes-button:hover, .no-button:hover {
+    background-color: #e08000; /* Darker shade on hover */
 }
 
