@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import json
+import requests
 
 app = Flask(__name__)
 
@@ -18,12 +19,28 @@ def save_submissions(submissions):
     with open(submissions_file, 'w') as file:
         json.dump(submissions, file)
 
-current_image = {'url': "https://source.unsplash.com/random/512x512?monster,vfx,horror",
+def get_final_image_url():
+    base_url = "https://source.unsplash.com/random/512x512?monster,vfx,horror"
+    
+    # Make a request to the Unsplash /random page to get a random image
+    response = requests.get(base_url, allow_redirects=False)
+    
+    # Check if the request was redirected
+    if response.status_code == 302 and 'Location' in response.headers:
+        # Extract the final URL after following redirects
+        final_image_url = response.headers['Location']
+        return final_image_url
+    else:
+        # If the request fails or there is no redirect, return None
+        return None
+current_image = {'url': "",
 	'votes': {'yes': 0, 'no': 0}
 	}
 
 @app.route('/')
 def index():
+    url = get_final_image_url()
+    current_image['url'] = url
     return render_template('index.html', image=current_image)
 
 @app.route('/results')
@@ -64,5 +81,5 @@ def vote():
         return "Invalid vote, please enter 'yes' or 'no'."
 
 if __name__ == '__main__':
-    app.run(debug=False, port=42066)
+    app.run(debug=False, port=42066, host="0.0.0.0")
 
