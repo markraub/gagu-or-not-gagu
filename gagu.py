@@ -20,7 +20,7 @@ def save_submissions(submissions):
         json.dump(submissions, file)
 
 def get_final_image_url():
-    base_url = "https://source.unsplash.com/random/512x512?monster,vfx,horror"
+    base_url = "https://source.unsplash.com/random?monster,vfx,horror,movies,costume,specialfx,humanoid,being,creepy,slimy"
     
     # Make a request to the Unsplash /random page to get a random image
     response = requests.get(base_url, allow_redirects=False)
